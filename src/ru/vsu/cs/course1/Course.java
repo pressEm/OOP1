@@ -1,21 +1,28 @@
 package ru.vsu.cs.course1;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 
 public class Course {
-    int name;//
-    List<Group> groups;
-    List<Discipline> disciplines;
-    public Course(int name){
+    private int name;//номер курса
+    private Map<Integer, Group> groups;//ключ - номер, значение - объект группы
+    private Map<String, Discipline> disciplines;
+
+    public Course(int name) {
         this.name = name;
     }
 
     public void addGroup(Group group) {
-        groups.add(group);
+        groups.put(group.name, group);
     }
 
     public void addDis(Discipline discipline) {
-        disciplines.add(discipline);
+        disciplines.put(discipline.getName(), discipline);
+    }
+
+    public Group getGroup (int name){
+        return groups.get(name);
+    }
+    public Discipline getDiscipline (String name){
+        return disciplines.get(name);
     }
 }

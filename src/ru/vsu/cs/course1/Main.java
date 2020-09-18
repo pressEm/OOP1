@@ -10,11 +10,11 @@ import java.util.List;
 public class Main extends Thread {
     public static void main(String[] args) {
         List<Student> students = getStudentsFromFile("C:\\Программирование\\OOP1.1\\src\\Students2.txt");
-        List<Discipline> disciplines = getDisciplinesFromFile("C:\\Программирование\\OOP1.1\\src\\Disciplines1.txt");
-        List<Teacher> teachers = getTeachersFromFile("C:\\Программирование\\OOP1.1\\src\\Teachers1.txt");
+        Map<String, Teacher> teachers = getTeachersFromFile("C:\\Программирование\\OOP1.1\\src\\Teachers1.txt");
+        List<Discipline> disciplines = getDisciplinesFromFile("C:\\Программирование\\OOP1.1\\src\\Disciplines1.txt", teachers);
 //        printStudent(students);
         printDisciplines(disciplines);
-        printTeachers(teachers);
+//        printTeachers(teachers);
 //        createGroups(students, 5);
 //        createGroups(students, 5);
     }
@@ -36,142 +36,106 @@ public class Main extends Thread {
 
     public static List<Student> getStudentsFromFile(String file) {
         List<Student> students = new ArrayList<>();
-        List<String[]> listStudents = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = br.readLine();
-            String[] array;
+            String[] str;
             while (line != null) {
-                array = line.split(", *");
-                listStudents.add(array);
+                str = line.split(", *");
+                students.add(new Student(str[0], Integer.parseInt(str[1])));
                 line = br.readLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        for (int i = 0; i < listStudents.size(); i++) {
-            Student l = new Student(listStudents.get(i)[0], Integer.parseInt(listStudents.get(i)[1]));
-            students.add(l);
         }
         return students;
     }
 
-    public static List<Teacher> getTeachersFromFile(String file) {
-        List<Teacher> teachers = new ArrayList<>();
-        List<String[]> listTeachers = new ArrayList<>();
+    public static Map<String, Teacher> getTeachersFromFile(String file) {
+        Map<String, Teacher> teachers = new HashMap<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = br.readLine();
-            String[] array;
+            String[] str;
             while (line != null) {
-                array = line.split(", *");
-                listTeachers.add(array);
+                str = line.split(", *");
+                teachers.put(str[0], new Teacher(str[0], Integer.parseInt(str[1])));
                 line = br.readLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        for (int i = 0; i < listTeachers.size(); i++) {
-           teachers.add(new Teacher(listTeachers.get(i)[0]));
-           teachers.get(i).hoursInWeek = Integer.parseInt(listTeachers.get(i)[1]);
         }
         return teachers;
     }
 
 
-    public static List<Course> getCoursesFromFile(String file) {
-        List<Course> courses = new ArrayList<>();
-        List<String[]> listCourses = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = br.readLine();
-            String[] array;
-            while (line != null) {
-                array = line.split(", *");
-                listCourses.add(array);
-                line = br.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i < listCourses.size(); i++) {
-//            List<Discipline> disciplines = new ArrayList<>();
-            courses.add(createCourse(listCourses.get(i)));
-        }
-        return courses;
-    }
-    public static Course createCourse(String[] str) {
-        Course course = new Course(Integer.parseInt(str[0]));
-        for (int i = 1; i < str.length; i++) {
-            course.disciplines.add(new Discipline(str[i],);
-        }
-        return course
-    }
-
-    public static List<Discipline> getDisciplinesFromFile(String file) {
-        List<Discipline> disciplines = new ArrayList<>();
-        List<String[]> listDisciplines = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = br.readLine();
-            String[] array;
-            while (line != null) {
-                array = line.split(", *");
-                listDisciplines.add(array);
-                line = br.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i < listDisciplines.size(); i++) {
-//            for (int j = 0; j < listDisciplines.get(i).length; j++) {
-//                System.out.print(listDisciplines.get(i)[j] + " ");
+//    public static List<Course> getCoursesFromFile(String file) {
+//        List<Course> courses = new ArrayList<>();
+//        List<String[]> listCourses = new ArrayList<>();
+//        try {
+//            BufferedReader br = new BufferedReader(new FileReader(file));
+//            String line = br.readLine();
+//            String[] array;
+//            while (line != null) {
+//                array = line.split(", *");
+//                listCourses.add(array);
+//                line = br.readLine();
 //            }
-//            System.out.println();
-            disciplines.add(createDiscipline(listDisciplines.get(i)));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        for (int i = 0; i < listCourses.size(); i++) {
+////            List<Discipline> disciplines = new ArrayList<>();
+//            courses.add(createCourse(listCourses.get(i)));
+//        }
+//        return courses;
+//    }
+//    public static Course createCourse(String[] str) {
+//        Course course = new Course(Integer.parseInt(str[0]));
+//        for (int i = 1; i < str.length; i++) {
+//            course.disciplines.add(new Discipline(str[i],);
+//        }
+//        return course
+//    }
+
+    public static List<Discipline> getDisciplinesFromFile(String file, Map<String, Teacher> teachers) {
+        List<Discipline> disciplines = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = br.readLine();
+            String[] str;
+            while (line != null) {
+                str = line.split(", *");
+                disciplines.add(createDiscipline(str, teachers));
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return disciplines;
     }
 
-    public static Discipline createDiscipline(String[] str) {
+    public static Discipline createDiscipline(String[] str, Map<String, Teacher> teacherMap) {
         boolean flagClass = false;
-        Discipline discipline = new Discipline(str[0]);
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Teacher> teachers = new ArrayList<>();
+        List<Integer> classes = new ArrayList<>();
         for (int i = 1; i < str.length; i++) {
             if (isDigit(str[i])) {
-            if (!flagClass) {
-                if (discipline.map == null)
-                discipline.map = new HashMap<>();
-                discipline.map.put(Integer.parseInt(str[i]), Integer.parseInt(str[i+1]));
-//                if (discipline.course == null)
-//                    discipline.course = new ArrayList<>();
-//                discipline.course.add(Integer.parseInt(str[i]));
-//                if (discipline.hours == null)
-//                    discipline.hours = new ArrayList<>();
-//                discipline.hours.add(Integer.parseInt(str[i + 1]));
-                i++;
-            } else {
-                if (discipline.classes == null)
-                    discipline.classes = new ArrayList<>();
-
-                discipline.classes.add(Integer.parseInt(str[i]));
-            }
+                if (!flagClass) {
+                    map.put(Integer.parseInt(str[i]), Integer.parseInt(str[i + 1]));
+                    i++;
+                } else {
+                    classes.add(Integer.parseInt(str[i]));
+                }
             } else {
                 flagClass = true;
-                if (discipline.teachers == null)
-                    discipline.teachers = new ArrayList<>();
-                discipline.teachers.add(new Teacher(str[i]));
-
+                teachers.add(teacherMap.get(str[i]));
             }
         }
-        return discipline;
+        return new Discipline(str[0], map, teachers, classes);
     }
 
 
@@ -186,63 +150,70 @@ public class Main extends Thread {
 
     public static void printStudents(List<Student> students) {
         for (int i = 0; i < students.size(); i++) {
-            System.out.print(students.get(i).name + ", ");
-            System.out.print(students.get(i).course + ", ");
-            System.out.print(students.get(i).points);
+            System.out.print(students.get(i).getName() + ", ");
+            System.out.print(students.get(i).getCourse() + ", ");
+            System.out.print(students.get(i).getGroup().name);
             System.out.println();
         }
     }
 
+
+    //доделать
     public static void printDisciplines(List<Discipline> disciplines) {
         System.out.println(disciplines.size());
         for (int i = 0; i < disciplines.size(); i++) {
-            System.out.print(disciplines.get(i).name + " ");
-            System.out.println(disciplines.get(i).map);
+            System.out.print(disciplines.get(i).getName() + " ");
+            for (Teacher currTeacher : disciplines.get(i).getTeachers()) {
+                System.out.print(currTeacher.name + " ");
+            }
+//            System.out.println(disciplines.get(i).g);
 //            System.out.print(disciplines.get(i).course + ", ");
 //            System.out.print(disciplines.get(i).hours);
-            for (int j = 0; j < disciplines.get(i).teachers.size(); j++) {
-                System.out.print(disciplines.get(i).teachers.get(j).name + ", ");
-            }
-            System.out.println();
-            System.out.println(disciplines.get(i).classes);
-            System.out.println();
-        }
-    }
-
-    public static void printTeachers(List<Teacher> teachers) {
-        for (int i = 0; i < teachers.size(); i++) {
-            System.out.print(teachers.get(i).name + ", ");
-            System.out.print(teachers.get(i).hoursInWeek + ", ");
-            System.out.println();
-        }
-    }
-
-    public static void createGroups(List<Course> courses, List<Student> allStudents) {
-
-    }
-
-    public static List<List<Student>> distributionByCourses(List<Student> students) {
-        List<List<Student>> studentsInCourse = new ArrayList<>();
-        for (int i = 0; i < students.size(); i++) {
-            switch (students.get(i).course) {
-                case (1):
-                    studentsInCourse.get(0).add(students.get(i));
-                    break;
-                case (2):
-                    studentsInCourse.get(1).add(students.get(i));
-                    break;
-                case (3):
-                    studentsInCourse.get(2).add(students.get(i));
-                    break;
-                case (4):
-                    studentsInCourse.get(3).add(students.get(i));
-                    break;
-                default:
-                    break;
+            for (Integer currClasses : disciplines.get(i).getClasses()) {
+                System.out.print(currClasses + " ");
+                System.out.println();
             }
         }
-        return studentsInCourse;
     }
+
+//    public static void printTeachers(Map<String, Teacher> teachers) {
+//        System.out.println();
+//    }
+
+
+    public static Map<Integer, Course> createCourse(List<Student> allStudents, List<Discipline> disciplines) {
+        Map<Integer, Course> map = new HashMap<>();
+        for (Student student : allStudents) {
+            if (!map.containsKey(student.getCourse())) {
+                map.put(student.getCourse(), new Course(student.getCourse()));
+            }
+            Course course = map.get(student.getCourse());
+        }
+        return map;
+    }
+
+//    public static List<List<Student>> distributionByCourses(List<Student> students) {
+//        List<List<Student>> studentsInCourse = new ArrayList<>();
+//        for (int i = 0; i < students.size(); i++) {
+//            switch (students.get(i).course) {
+//                case (1):
+//                    studentsInCourse.get(0).add(students.get(i));
+//                    break;
+//                case (2):
+//                    studentsInCourse.get(1).add(students.get(i));
+//                    break;
+//                case (3):
+//                    studentsInCourse.get(2).add(students.get(i));
+//                    break;
+//                case (4):
+//                    studentsInCourse.get(3).add(students.get(i));
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        return studentsInCourse;
+//    }
 //
 //    public static void createGroup2(List<Student> students, int sizeGroup) {
 //        List<Group> groups = new ArrayList<>();
@@ -279,26 +250,25 @@ public class Main extends Thread {
         List<List<Student>> studentByGroups = new ArrayList<>();
         List<List<Student>> studentsByCourses = distributionByCourses(allStudents);
         for (int i = 0; i < studentsByCourses.size(); i++) {
-                fillingGroups(allStudents, studentByGroups);
-            }
-
-            }
-        return studentByGroups;
+            fillingGroups(allStudents, studentByGroups);
         }
 
-        private static List<Student> fillingGroups (List<Student> allStudents, List<List<Student>> studentsByGroups) {
+    }
+        return studentByGroups;
+}
+
+    private static List<Student> fillingGroups(List<Student> allStudents, List<List<Student>> studentsByGroups) {
         List<Student> students = new ArrayList<>();
-            for (int i = 0; i < allStudents.size(); i++) {
-                for (int j = 0; j < studentsByGroups.get(allStudents.get(i).course).size(); j++) {
-int g = allStudents.get(i).name.compareTo(studentsByGroups.get(allStudents.get(i).course).get(j).name);
+        for (int i = 0; i < allStudents.size(); i++) {
+            for (int j = 0; j < studentsByGroups.get(allStudents.get(i).course).size(); j++) {
+                int g = allStudents.get(i).name.compareTo(studentsByGroups.get(allStudents.get(i).course).get(j).name);
 //                    if (allStudents.get(i).name.compareTo(studentsByGroups[allStudents.get(i).course].get(j).name)){
 
 //                    }
-                }
             }
-            return students;
         }
-
+        return students;
+    }
 
 
 //        for (int i = 0; i < students.size(); i++) {

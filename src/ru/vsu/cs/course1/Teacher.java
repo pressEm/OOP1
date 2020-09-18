@@ -8,7 +8,8 @@ public class Teacher {
 //    List<String> discipline;
 //    boolean isLecturer;
 
-    public Teacher (String name){
+    public Teacher (String name, int hoursInWeek){
         this.name = name;
+        this.hoursInWeek = hoursInWeek;
     }
 }

@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Group {
     int name;
-    int course;
+//    int course;
     List<Student> students;
-    public Group (int name, int course){
+
+    public Group (int name){
         this.name = name;
-        this.course = course;
+//        this.course = course;
     }
 
     public void  addStudent(Student student) {

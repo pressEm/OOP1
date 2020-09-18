@@ -1,15 +1,31 @@
 package ru.vsu.cs.course1;
 
 public class Student {
-    public String name;
-    public int course;
-    public int group;
+    private String name;
+    private int course;
+    //    private int groupName;
+    private Group group;
 //    public int points;
 
-    public Student(String name, int course){
+    public Student(String name, int course) {
         this.name = name;
         this.course = course;
-//        this.points = points;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCourse() {
+        return course;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
 //    @Override
