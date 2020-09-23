@@ -1,8 +1,6 @@
 package ru.vsu.cs.course1;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Discipline {
 
@@ -16,13 +14,14 @@ public class Discipline {
         this.map = map;
         this.teachers = teachers;
         this.classes = classes;
-//        this.course = group;
-//        this.hours = hours;
-//        this.teacher = teacher;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Map<Integer, Integer> getMap() {
+        return map;
     }
 
     public List<Integer> getClasses() {
@@ -31,6 +30,11 @@ public class Discipline {
 
     public List<Teacher> getTeachers() {
         return teachers;
+    }
+
+    public Set<Integer> getCourses() {
+
+        return map.keySet();
     }
 
     public Integer getHours(int nameCourse) {

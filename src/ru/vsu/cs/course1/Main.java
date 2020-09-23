@@ -12,11 +12,28 @@ public class Main extends Thread {
         List<Student> students = getStudentsFromFile("C:\\Программирование\\OOP1.1\\src\\Students2.txt");
         Map<String, Teacher> teachers = getTeachersFromFile("C:\\Программирование\\OOP1.1\\src\\Teachers1.txt");
         List<Discipline> disciplines = getDisciplinesFromFile("C:\\Программирование\\OOP1.1\\src\\Disciplines1.txt", teachers);
+        Map<Integer, Course> courses = createCourse(students, disciplines);
+
 //        printStudent(students);
+//        printCourses(courses);
         printDisciplines(disciplines);
 //        printTeachers(teachers);
 //        createGroups(students, 5);
 //        createGroups(students, 5);
+    }
+
+    public static void printCourses(Map<Integer, Course> courseMap) {
+        System.out.println("@@@" + courseMap.keySet());
+
+        for (Integer i : courseMap.keySet()){
+            System.out.println(i);
+            if ((courseMap == null) && (courseMap.get(i).getAllDisciplines() == null)) {
+                System.out.println("errjr 28");
+            }else
+                System.out.println(courseMap.get(i).getName() + "   " + courseMap.get(i).getAllDisciplines());
+        }
+
+
     }
 
 
@@ -160,136 +177,70 @@ public class Main extends Thread {
 
     //доделать
     public static void printDisciplines(List<Discipline> disciplines) {
-        System.out.println(disciplines.size());
-        for (int i = 0; i < disciplines.size(); i++) {
-            System.out.print(disciplines.get(i).getName() + " ");
-            for (Teacher currTeacher : disciplines.get(i).getTeachers()) {
-                System.out.print(currTeacher.name + " ");
+
+//        System.out.println(disciplines.size());
+        for (Discipline discipline : disciplines) {
+            System.out.println(discipline.getName() + ": ");
+            System.out.println(discipline.getCourses());
+            for (Teacher currTeacher : discipline.getTeachers()) {
+                System.out.print(currTeacher.name + ", ");
             }
-//            System.out.println(disciplines.get(i).g);
-//            System.out.print(disciplines.get(i).course + ", ");
-//            System.out.print(disciplines.get(i).hours);
-            for (Integer currClasses : disciplines.get(i).getClasses()) {
+            for (Integer currClasses : discipline.getClasses()) {
                 System.out.print(currClasses + " ");
-                System.out.println();
             }
+            System.out.println();
         }
+
     }
 
-//    public static void printTeachers(Map<String, Teacher> teachers) {
-//        System.out.println();
-//    }
 
 
+//
+//        create groups
+//
+//
+//
     public static Map<Integer, Course> createCourse(List<Student> allStudents, List<Discipline> disciplines) {
+        for (Student s : allStudents) {
+            System.out.println(s.getName() + " " + s.getCourse());
+        }
+        printDisciplines(disciplines);
         Map<Integer, Course> map = new HashMap<>();
         for (Student student : allStudents) {
             if (!map.containsKey(student.getCourse())) {
                 map.put(student.getCourse(), new Course(student.getCourse()));
             }
             Course course = map.get(student.getCourse());
+
+            for (Discipline discipline : disciplines) {
+                if (discipline.getMap().containsKey(course.getName())) {
+                    map.get(course.getName()).addDis(discipline);
+                }
+            }
         }
         return map;
     }
-
-//    public static List<List<Student>> distributionByCourses(List<Student> students) {
-//        List<List<Student>> studentsInCourse = new ArrayList<>();
-//        for (int i = 0; i < students.size(); i++) {
-//            switch (students.get(i).course) {
-//                case (1):
-//                    studentsInCourse.get(0).add(students.get(i));
-//                    break;
-//                case (2):
-//                    studentsInCourse.get(1).add(students.get(i));
-//                    break;
-//                case (3):
-//                    studentsInCourse.get(2).add(students.get(i));
-//                    break;
-//                case (4):
-//                    studentsInCourse.get(3).add(students.get(i));
-//                    break;
-//                default:
-//                    break;
+//    public static Map<Integer, Course> createCourse(List<Student> allStudents, List<Discipline> disciplines) {
+//        for (Student s : allStudents) {
+//            System.out.println(s.getName() + " " + s.getCourse());
+//        }
+//        printDisciplines(disciplines);
+//        Map<Integer, Course> map = new HashMap<>();
+//        for (Student student : allStudents) {
+//            if (!map.containsKey(student.getCourse())) {
+//                map.put(student.getCourse(), new Course(student.getCourse()));
+//            }
+//            Course course = map.get(student.getCourse());
+//
+//            for (Discipline discipline : disciplines) {
+//                if (discipline.getMap().containsKey(course.getName())) {
+//                    map.get(course.getName()).addDis(discipline);
+//                }
 //            }
 //        }
-//        return studentsInCourse;
+//        return map;
 //    }
-//
-//    public static void createGroup2(List<Student> students, int sizeGroup) {
-//        List<Group> groups = new ArrayList<>();
-//        List<List<Student>> studentsByGroup = new ArrayList<>();
-//        for (int i = 0; i < students.size(); i++) {
-//            groups.add(new Group(students.get(i).group, students.get(i).course, new ArrayList<>()));
-//        }
-//
-//        for (int i = 0; i < studentsByGroup.length; i++) {
-//            for (int j = 0; j < students.size(); j++) {
-//                System.out.println("125 " + studentsByGroup[i].get(j));
-//                studentsByGroup[i].add(students.get(j));
-//            }
-//        }
-//        for (int i = 0; i < studentsByGroup.length; i++) {
-//            for (int j = 0; j < students.size(); j++) {
-//                System.out.println("125 " + studentsByGroup[i].get(j));
-////                studentsByGroup[i].add(students.get(j));
-//            }
-//        }
 
-//        for (int i = 0; i < students.size(); i++) {
-//            studentsByGroup[students.get(i).group].add(students.get(i));
-//        }
-//        for (int i = 0; i < studentsByGroup.length; i++) {
-//            groups.sdd(new Group())
-//           groups.add(new Group(students.get(i).group, students.get(i).course), )
-//        }
-
-
-    public static List<List<Student>> createGroups(List<Student> allStudents, int sizeGroup) {
-//        List<Group> groups = new ArrayList<>();
-//        List<Student> students
-        List<List<Student>> studentByGroups = new ArrayList<>();
-        List<List<Student>> studentsByCourses = distributionByCourses(allStudents);
-        for (int i = 0; i < studentsByCourses.size(); i++) {
-            fillingGroups(allStudents, studentByGroups);
-        }
-
-    }
-        return studentByGroups;
-}
-
-    private static List<Student> fillingGroups(List<Student> allStudents, List<List<Student>> studentsByGroups) {
-        List<Student> students = new ArrayList<>();
-        for (int i = 0; i < allStudents.size(); i++) {
-            for (int j = 0; j < studentsByGroups.get(allStudents.get(i).course).size(); j++) {
-                int g = allStudents.get(i).name.compareTo(studentsByGroups.get(allStudents.get(i).course).get(j).name);
-//                    if (allStudents.get(i).name.compareTo(studentsByGroups[allStudents.get(i).course].get(j).name)){
-
-//                    }
-            }
-        }
-        return students;
-    }
-
-
-//        for (int i = 0; i < students.size(); i++) {
-//
-//            System.out.println("1 160 ! " + students.get(i).points + students.get(i).course);
-//        }
-//        System.out.println("l            " + studentsByCourses.length);
-//        for (int i = 0; i < studentsByCourses.length; i++) {
-//            if (studentsByCourses[i] != null) {
-//                List<Student>[] studentsInGroup = byGroups(studentsByCourses[i], sizeGroup);
-//                System.out.println("l            " + studentsInGroup.length);
-//
-//            }
-//        }
-//        System.out.println("count gr " + groups.size());
-//        for (int i = 0; i < groups.size(); i++) {
-//            System.out.println(groups.get(i).name);
-//            System.out.println("! 136 name of group  " + groups.get(i).name + " ! course " + groups.get(i).course);
-//            printStudents(groups.get(i).students);
-//        }
-//    }
 
 
     public static List<Student>[] byGroups(List<Student> students, int sizeGroup) {
@@ -454,14 +405,14 @@ public class Main extends Thread {
 //        }
 //        System.out.println();
 
-
-    public static void printGroups(List<Group> groups) {
-        for (int i = 0; i < groups.size(); i++) {
-            System.out.print("+++++++" + groups.get(i).name + ", ");
-            System.out.print(groups.get(i).course + ", ");
-//                Student s = groups.get(i).students.get(i);
-            System.out.println();
-        }
-    }
+//
+//    public static void printGroups(List<Group> groups) {
+//        for (int i = 0; i < groups.size(); i++) {
+//            System.out.print("+++++++" + groups.get(i).name + ", ");
+//            System.out.print(groups.get(i).course + ", ");
+////                Student s = groups.get(i).students.get(i);
+//            System.out.println();
+//        }
+//    }
 
 }
