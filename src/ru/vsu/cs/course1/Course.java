@@ -17,15 +17,18 @@ public class Course {
         return this.name;
     }
     public void addGroup(Group group) {
-        groups.put(group.name, group);
+        groups.put(group.getName(), group);
     }
 
     public void addDis(Discipline discipline) {
         disciplines.put(discipline.getName(), discipline);
     }
 
-    public Group getGroup (int name){
+    public Group getGroup (Group name){
         return groups.get(name);
+    }
+    public Map<Integer, Group> getAllGroups (){
+        return groups;
     }
     public Set<String> getAllDisciplines(){
         return this.disciplines.keySet();
