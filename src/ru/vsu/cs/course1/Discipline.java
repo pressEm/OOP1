@@ -1,26 +1,31 @@
 package ru.vsu.cs.course1;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Discipline {
-
-    private String name;
-    private Map<Integer, Integer> map; //course -- hours
-    private List<Teacher> teachers;
+    private CourseType courseType;
+    private Map<String, Integer> map = new HashMap<>(); //group -- hours
     private List<Integer> classes;
 
-    public Discipline(String  name, Map<Integer,Integer> map, List<Teacher> teachers, List<Integer> classes){
-        this.name = name;
-        this.map = map;
-        this.teachers = teachers;
+    public Discipline(CourseType courseType) {
+        this.courseType = courseType;
+    }
+
+    public void setClasses(List<Integer> classes){
         this.classes = classes;
+
     }
 
-    public String getName() {
-        return name;
+    public void setHours(String nameGroup, Integer hours){
+        this.map.put(nameGroup, hours);
     }
 
-    public Map<Integer, Integer> getMap() {
+    public String getCourseType(){
+        return courseType.name();
+    }
+    public Map<String, Integer> getMap() {
         return map;
     }
 
@@ -28,20 +33,8 @@ public class Discipline {
         return classes;
     }
 
-    public List<Teacher> getTeachers() {
-        return teachers;
-    }
-
-    public Set<Integer> getCourses() {
-
-        return map.keySet();
-    }
 
     public Integer getHours(int nameCourse) {
         return map.get(nameCourse);
     }
-    //    public Map<Integer, Integer> createMap (int course, int hours){
-//        HashMap<Integer, Integer> map = new HashMap<>();
-//        map.put(course, hours);
-//    }
 }
