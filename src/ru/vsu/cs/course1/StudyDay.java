@@ -1,8 +1,6 @@
 package ru.vsu.cs.course1;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class StudyDay {
     private Map<Integer,Pair> pairs = new HashMap<>();
@@ -13,10 +11,28 @@ public class StudyDay {
         this.dayWeek = dayWeek;
     }
 
-    public Map<Integer, Pair> getPairs() {
+
+    public void addPair(Pair pair){
+        this.pairs.put(pairs.size(), pair);
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public DayWeek getDayWeek() {
+        return dayWeek;
+    }
+
+    public Map<Integer, Pair> getMapPairs() {
         return pairs;
     }
-    public Collection<Pair> getPair(){
+    public Collection<Pair> getPairs(){
         return pairs.values();
+    }
+    public List<Pair> getPairsList (){
+        List<Pair> pairList = new ArrayList<>();
+        pairList.addAll(pairs.values());
+        return pairList;
     }
 }

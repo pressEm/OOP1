@@ -21,6 +21,10 @@ public class Pair {
         this.disciplines = disciplines;
     }
 
+    public Discipline getDiscipline (){
+        return this.discipline;
+    }
+
     public List<Discipline> getDisciplines() {
         return disciplines;
     }

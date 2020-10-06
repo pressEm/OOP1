@@ -7,6 +7,10 @@ public class Main extends Thread {
     public static void main(String[] args) {
         Schedule schedule = new Schedule();
         schedule.connectionData();
+//        ScheduleService schedule = new ScheduleService();
+//        schedule.createSchedule();
+
+
 //        schedule.printGroups(schedule.getGroups());
     }
 }

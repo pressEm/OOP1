@@ -13,18 +13,23 @@ public class Discipline {
         this.courseType = courseType;
     }
 
-    public void setClasses(List<Integer> classes){
+    public void setClasses(List<Integer> classes) {
         this.classes = classes;
 
     }
 
-    public void setHours(String nameGroup, Integer hours){
+    public int getHoursForGroup(Group group) {
+        return map.get(group.getName());
+    }
+
+    public void setHours(String nameGroup, Integer hours) {
         this.map.put(nameGroup, hours);
     }
 
-    public String getCourseType(){
+    public String getCourseType() {
         return courseType.name();
     }
+
     public Map<String, Integer> getMap() {
         return map;
     }

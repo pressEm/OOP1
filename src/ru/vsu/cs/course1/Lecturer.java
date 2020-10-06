@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Lecturer {
-    String name;
-    Set<CourseType> disciplines = new HashSet<>();
+    private String name;
+    private Set<CourseType> disciplines = new HashSet<>();
 
     public Lecturer (String name){
         this.name = name;
@@ -21,5 +21,16 @@ public class Lecturer {
 
     public String getName() {
         return name;
+    }
+
+    public boolean ifExistDisc(Discipline currDisc){
+        String currDiscName = currDisc.getCourseType();
+        for (CourseType courseType : disciplines){
+            System.out.println(courseType);
+            if (currDiscName.equals(courseType.name())){
+                return true;
+            }
+        }
+        return false;
     }
 }
