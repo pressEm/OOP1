@@ -9,9 +9,6 @@ public class StudyWeek {
 
     public StudyWeek(Group group){
         this.group = group;
-        for (int i = 0; i < DayWeek.values().length; i++) {
-            days.add(new StudyDay(group, DayWeek.values()[i]));
-        }
     }
 
     public Group getGroup() {
@@ -20,6 +17,15 @@ public class StudyWeek {
 
     public List<StudyDay> getDays() {
         return days;
+    }
+
+    public StudyDay getDay(DayWeek dayWeek){
+        for (StudyDay studyDay: this.days){
+            if (studyDay.getDayWeek().name().equals(dayWeek.name())){
+                return studyDay;
+            }
+        }
+        return new StudyDay();
     }
 
     public void addDay (StudyDay day){
