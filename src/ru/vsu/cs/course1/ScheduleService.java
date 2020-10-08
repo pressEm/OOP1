@@ -11,7 +11,6 @@ public class ScheduleService {
     private List<Lecturer> lecturers;
 
     public ScheduleService(Schedule schedule){
-//        this.schedule = schedule;
         this.groups = schedule.getGroups();
         this.disciplines = schedule.getDisciplines();
         this.lecturers = schedule.getLecturers();
@@ -27,22 +26,21 @@ public class ScheduleService {
             }
         }
         List<StudyWeek> schedule = new ArrayList<>();
-        StudyWeek[] scheduleArr = new StudyWeek[groups.size()];
-//        Map<String,List<Integer>> lectBusy = new HashMap<>();
+//        StudyWeek[] scheduleArr = new StudyWeek[groups.size()];
         Map<Integer,List<Integer>> classesBusy = new HashMap<>(); // class -- hours
 
         int i = 0;
         for (Group group:groups){
             StudyWeek studyWeek = createStudyWeekFor1Group(group, classesBusy);
             schedule.add(studyWeek);
-            scheduleArr[i] = studyWeek;
+            for (Student student:group.getStudents()){
+                student.setStudyWeek(studyWeek);
+            }
+//            scheduleArr[i] = studyWeek;
         }
         i = 0;
-        for (StudyWeek studyWeek : schedule){
-            i++;
-            printWeekFor1Gr(studyWeek, i);
-        }
-        System.out.println();
+      printSchedule(schedule);
+
     }
 //
 //    private boolean isClassFree(int studClass){
@@ -59,7 +57,6 @@ public class ScheduleService {
     }
 
     private StudyWeek createStudyWeekFor1Group(Group group, Map<Integer,List<Integer>> lectBusy){
-//        List<Discipline> disciplinesInWeek1 = discFor1group(disciplines, group);
         List<Discipline> thisDisc = discFor1group(disciplines, group);
         StudyWeek studyWeek = new StudyWeek(group);
 //         6 дней в нед
@@ -80,6 +77,25 @@ public class ScheduleService {
             studyWeek.addDay(studyDay);
         }
         return studyWeek;
+    }
+
+    public List<Discipline> discFor1group(List<Discipline> allDisc, Group group) {
+        List<Discipline> discInWeekFor1Group = new ArrayList<>();
+        for (Discipline discipline : allDisc) {
+            for (int i = 0; i < discipline.getHoursForGroup(group); i++) {
+                discInWeekFor1Group.add(discipline);
+            }
+        }
+        return discInWeekFor1Group;
+    }
+
+    private void printSchedule(List<StudyWeek> schedule){
+        int i = 0;
+        for (StudyWeek studyWeek : schedule){
+            i++;
+            printWeekFor1Gr(studyWeek, i);
+        }
+        System.out.println();
     }
 
     public void printDiscFor1Gr(List<Discipline> listDisc1Gr){
@@ -104,16 +120,5 @@ public class ScheduleService {
         }
         System.out.println("___________________________________________________");
     }
-
-    public List<Discipline> discFor1group(List<Discipline> allDisc, Group group) {
-        List<Discipline> discInWeekFor1Group = new ArrayList<>();
-        for (Discipline discipline : allDisc) {
-            for (int i = 0; i < discipline.getHoursForGroup(group); i++) {
-                discInWeekFor1Group.add(discipline);
-            }
-        }
-        return discInWeekFor1Group;
-    }
-
 
 }

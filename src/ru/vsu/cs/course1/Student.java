@@ -4,6 +4,7 @@ public class Student {
     private String name;
     private int course;
     private Group group;
+    private StudyWeek studyWeek;
 
     public Student(String name, int course) {
         this.name = name;
@@ -14,8 +15,16 @@ public class Student {
         this.group = group;
     }
 
+    public void setStudyWeek(StudyWeek studyWeek) {
+        this.studyWeek = studyWeek;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public StudyWeek getStudyWeek(){
+        return this.studyWeek;
     }
 
     public int getCourse() {
