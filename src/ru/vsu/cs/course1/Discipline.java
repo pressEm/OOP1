@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class Discipline {
     private CourseType courseType;
-    private Map<String, Integer> map = new HashMap<>(); //group -- hours
+    private Map<String, Integer> groupHoursMap = new HashMap<>(); //group -- hours
+//    private Map<Integer,List<Integer>> classesNotEmpty = new HashMap<>(); // hour --
     private List<Integer> classes;
 
     public Discipline(CourseType courseType) {
@@ -18,20 +19,22 @@ public class Discipline {
 
     }
 
+
+
     public int getHoursForGroup(Group group) {
-        return map.get(group.getName());
+        return groupHoursMap.get(group.getName());
     }
 
     public void setHours(String nameGroup, Integer hours) {
-        this.map.put(nameGroup, hours);
+        this.groupHoursMap.put(nameGroup, hours);
     }
 
     public String getCourseType() {
         return courseType.name();
     }
 
-    public Map<String, Integer> getMap() {
-        return map;
+    public Map<String, Integer> getGroupHoursMap() {
+        return groupHoursMap;
     }
 
     public List<Integer> getClasses() {
@@ -40,6 +43,6 @@ public class Discipline {
 
 
     public Integer getHours(int nameCourse) {
-        return map.get(nameCourse);
+        return groupHoursMap.get(nameCourse);
     }
 }

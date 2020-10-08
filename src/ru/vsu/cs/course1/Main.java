@@ -7,7 +7,7 @@ public class Main extends Thread {
     public static void main(String[] args) {
         Schedule schedule = new Schedule();
         schedule.connectionData();
-        ScheduleService srv = new ScheduleService();
+        ScheduleService srv = new ScheduleService(schedule);
         srv.createSchedule();
     }
 }

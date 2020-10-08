@@ -72,7 +72,7 @@ public class Schedule {
     public void printDisciplines(List<Discipline> disciplines) {
         for (Discipline discipline : disciplines) {
             System.out.println(discipline.getCourseType());
-            System.out.println(discipline.getMap() + " -- group=hours");
+            System.out.println(discipline.getGroupHoursMap() + " -- group=hours");
             System.out.println(discipline.getClasses() + " -- classes");
         }
         System.out.println("____________________________________________________");

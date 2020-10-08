@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c570306-bacd-43fb-925e-11ad7eaa28a8" name="Default Changelist" comment="readFiles">
+      <change afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/AllStudents.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Discipline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Discipline.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Lecturer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Lecturer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Pair.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Schedule.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Schedule.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/ScheduleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyDay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyDay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyWeek.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyWeek.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/AllStudents.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Lecturer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Pair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Schedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyDay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyWeek.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyWeek.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,22 +113,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600237638448" />
-    <state width="1537" height="230" key="GridCell.Tab.0.bottom" timestamp="1602090597205">
+    <state width="1537" height="234" key="GridCell.Tab.0.bottom" timestamp="1602162384134">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="230" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602090597205" />
-    <state width="1537" height="230" key="GridCell.Tab.0.center" timestamp="1602090597205">
+    <state width="1537" height="234" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602162384134" />
+    <state width="1537" height="234" key="GridCell.Tab.0.center" timestamp="1602162384134">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="230" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602090597205" />
-    <state width="1537" height="230" key="GridCell.Tab.0.left" timestamp="1602090597205">
+    <state width="1537" height="234" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602162384134" />
+    <state width="1537" height="234" key="GridCell.Tab.0.left" timestamp="1602162384134">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="230" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602090597205" />
-    <state width="1537" height="230" key="GridCell.Tab.0.right" timestamp="1602090597205">
+    <state width="1537" height="234" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602162384134" />
+    <state width="1537" height="234" key="GridCell.Tab.0.right" timestamp="1602162384134">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="230" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602090597205" />
+    <state width="1537" height="234" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602162384134" />
     <state width="1537" height="332" key="GridCell.Tab.1.bottom" timestamp="1602089609132">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

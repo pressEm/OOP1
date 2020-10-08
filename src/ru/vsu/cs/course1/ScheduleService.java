@@ -1,46 +1,85 @@
 package ru.vsu.cs.course1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ScheduleService extends Schedule {
+public class ScheduleService {
     private List<Group> groups;
     private List<Discipline> disciplines;
     private List<Lecturer> lecturers;
-    private Schedule schedule = new Schedule();
 
-
-
-    public ScheduleService(){
+    public ScheduleService(Schedule schedule){
+//        this.schedule = schedule;
         this.groups = schedule.getGroups();
         this.disciplines = schedule.getDisciplines();
         this.lecturers = schedule.getLecturers();
     }
 
-//    public void createSchedule(){
-//
-////        createWeekFor1group();
-//        createSchedule();
-//    }
-
     public void createSchedule() {
         List<Discipline> allDisc = new ArrayList<>();
         for (Discipline discipline : disciplines) {
-            for (Integer k : discipline.getMap().values()) {
+            for (Integer k : discipline.getGroupHoursMap().values()) {
                 for (int i = 0; i < k; i++) {
                     allDisc.add(discipline);
                 }
             }
         }
         List<StudyWeek> schedule = new ArrayList<>();
+        StudyWeek[] scheduleArr = new StudyWeek[groups.size()];
+//        Map<String,List<Integer>> lectBusy = new HashMap<>();
+        Map<Integer,List<Integer>> classesBusy = new HashMap<>(); // class -- hours
+
         int i = 0;
         for (Group group:groups){
+            StudyWeek studyWeek = createStudyWeekFor1Group(group, classesBusy);
+            schedule.add(studyWeek);
+            scheduleArr[i] = studyWeek;
+        }
+        i = 0;
+        for (StudyWeek studyWeek : schedule){
             i++;
-            StudyWeek studyWeek = createStudyWeekFor1Group(group);
-            schedule.add(createStudyWeekFor1Group(group));
             printWeekFor1Gr(studyWeek, i);
         }
-        List<Discipline> listDisc1Gr = discFor1group(disciplines, groups.get(0));
+        System.out.println();
+    }
+//
+//    private boolean isClassFree(int studClass){
+//
+//    }
+
+    private boolean isLectFree(Lecturer lecturer, int hour){
+        for (Integer studyHour : lecturer.getStudyHours()){
+            if (studyHour == hour){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private StudyWeek createStudyWeekFor1Group(Group group, Map<Integer,List<Integer>> lectBusy){
+//        List<Discipline> disciplinesInWeek1 = discFor1group(disciplines, group);
+        List<Discipline> thisDisc = discFor1group(disciplines, group);
+        StudyWeek studyWeek = new StudyWeek(group);
+//         6 дней в нед
+        for (int i = 0; i < 6; i++) {
+            StudyDay studyDay = new StudyDay(group, DayWeek.values()[i]);
+            boolean isFindLecture;
+            for (int j = 0; ((j < 6) && (thisDisc.size()>0)); j++){
+//                 6 пар в день
+                isFindLecture = false;
+                for (Lecturer lecturer : lecturers) {
+                    if ((!isFindLecture) && (isLectFree(lecturer,(i*10+j))) && (lecturer.ifExistDisc(thisDisc.get(0)))&& (thisDisc.size()>0)) {
+                        studyDay.addPair(new Pair(group, lecturer, thisDisc.get(0), i, j));
+                        thisDisc.remove(0);
+                        isFindLecture = true;
+                    }
+                }
+            }
+            studyWeek.addDay(studyDay);
+        }
+        return studyWeek;
     }
 
     public void printDiscFor1Gr(List<Discipline> listDisc1Gr){
@@ -56,7 +95,10 @@ public class ScheduleService extends Schedule {
         for (DayWeek dayWeek : DayWeek.values()){
             System.out.println(studyWeek.getDay(dayWeek).getDayWeek());
             for (Pair pair : studyWeek.getDay(dayWeek).getPairsList()){
+                System.out.print(pair.getLecturer().getName()+", ");
+                System.out.print(pair.getPairNum()+", ");
                 System.out.print(pair.getDiscipline().getCourseType()+", ");
+                System.out.println();
             }
             System.out.println();
         }
@@ -72,63 +114,6 @@ public class ScheduleService extends Schedule {
         }
         return discInWeekFor1Group;
     }
-    //условие окончания дисциплин для изучения
-    private StudyWeek createStudyWeekFor1Group(Group group){
-//        List<Discipline> disciplinesInWeek1 = discFor1group(disciplines, group);
-        List<Discipline> thisDisc = discFor1group(disciplines, group);
-        StudyWeek studyWeek = new StudyWeek(group);
-//         6 дней в нед
-        for (int i = 0; i < 6; i++) {
-            StudyDay studyDay = new StudyDay(group, DayWeek.values()[i]);
-            boolean isFindLecture;
-            for (int j = 0; ((j < 6) && (thisDisc.size()>0)); j++){
-//                 6 пар в день
-                isFindLecture = false;
-                for (Lecturer lecturer : lecturers) {
-                    if ((!isFindLecture) && (lecturer.ifExistDisc(thisDisc.get(0)))&& (thisDisc.size()>0)) {
-                        studyDay.addPair(new Pair(group, lecturer, thisDisc.get(0)));
-                        thisDisc.remove(0);
-                        isFindLecture = true;
-                    }
-                }
-            }
-            studyWeek.addDay(studyDay);
-        }
-        return studyWeek;
-    }
 
-//    private StudyDay createStudyDayFor1Group(List<Discipline> discInWeekFor1Group, Group group, DayWeek dayWeek) {
-////        StudyWeek studyWeek;
-////        int countPairsInDay = (int) (discInWeekFor1Group.size()/6) + 1;
-////        DayWeek[] daysInWeek = DayWeek.values();
-//        List<Discipline> thisDisc = new ArrayList<>();
-//        thisDisc.addAll(discInWeekFor1Group);
-//        StudyDay studyDay = new StudyDay(group, dayWeek);
-//
-//        boolean isFindLecture;
-//        for (int i = 0; i < 6; i++){
-//            isFindLecture = false;
-//            for (Lecturer lecturer : lecturers) {
-//                if ((!isFindLecture) && (lecturer.ifExistDisc(thisDisc.get(0)))) {
-//                    Pair pair = new Pair(group, lecturer, thisDisc.get(0));
-//                    studyDay.addPair(pair);
-//                    thisDisc.remove(0);
-//                    isFindLecture = true;
-//                }
-//            }
-//        }
-////                ВЫВОД ДИСЦИПЛИН ЗА 1 ДЕНЬ
-////        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-////        for (Pair pair : studyDay.getPairs()) {
-////            System.out.println(pair.getDiscipline().getCourseType());
-////        }
-////        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//
-//        return studyDay;
-//    }
 
-    public void createWeekFor1group(){
-        StudyWeek week = new StudyWeek(groups.get(0));
-
-    }
 }
