@@ -95,37 +95,35 @@ public class ScheduleService {
 //        return true;
 //    }
 
+
     private StudyWeek createStudyWeekFor1Group(Group group, Map<Integer, List<Integer>> lectBusy, List<StudyWeek> schedule) {
         List<Discipline> thisDisc = discFor1group(disciplines, group);
         StudyWeek studyWeek = new StudyWeek(group);
-//        Map<Integer, StudyClass>  studyClasses = new HashMap<>();
-//        Map <Integer, List<Integer>> classes = new HashMap<>(); // class -- hours
 //         6 дней в нед
         for (int i = 0; i < 6; i++) {
             StudyDay studyDay = new StudyDay(group, DayWeek.values()[i]);
-            boolean isFindLecture;
-            for (int j = 0; ((j < 6) && (thisDisc.size() > 0)); j++) {
+            boolean isFind;
 //                 6 пар в день
-                isFindLecture = false;
+            for (int j = 0; ((j < 6) && (thisDisc.size() > 0)); j++) {
+                isFind = false;
                 for (Lecturer lecturer : lecturers) {
-                    while ((!isFindLecture) && (lecturer.isTeachDisc(thisDisc.get(0))) &&
+                    while ((!isFind) && (lecturer.isTeachDisc(thisDisc.get(0))) &&
                             (isLectFree(lecturer, (i * 10 + j))) && (thisDisc.size() > 0)) {
                         int studClass = findClass(thisDisc.get(0), i, j, schedule);
                         if (studClass != -1) {
-
-
-//                        thisDisc.get(0).setStudClass(studClass, 10*i+j);
-
-//                        studyClasses.put(studClass, new StudyClass(studClass));
                             studyDay.addPair(new Pair(group, lecturer, thisDisc.get(0), studClass, i, j));
                             thisDisc.remove(0);
-                            isFindLecture = true;
-                        } else {
-                            thisDisc.add(thisDisc.get(0));
+                            isFind = true;
                         }
-
-
                     }
+                    if (isFind) {
+                        break;
+                    }
+                }
+                if (!isFind) {
+                    thisDisc.add(thisDisc.get(0));
+                    thisDisc.remove(0);
+                    j--;
                 }
             }
             studyWeek.addDay(studyDay);
