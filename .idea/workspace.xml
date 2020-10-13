@@ -3,10 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="2c570306-bacd-43fb-925e-11ad7eaa28a8" name="Default Changelist" comment="readFiles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Discipline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Discipline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Pair.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/ScheduleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Lecturer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Schedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,10 +94,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="544" y="220" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1599929586401" />
-    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1601814393100">
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1602266161608">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1601814393100" />
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1602266161608" />
     <state x="209" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599980701573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -104,46 +110,46 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600237638448" />
-    <state width="1537" height="234" key="GridCell.Tab.0.bottom" timestamp="1602177165052">
+    <state width="1537" height="234" key="GridCell.Tab.0.bottom" timestamp="1602599803379">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="234" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602177165052" />
-    <state width="1537" height="234" key="GridCell.Tab.0.center" timestamp="1602177165052">
+    <state width="1537" height="234" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602599803379" />
+    <state width="1537" height="234" key="GridCell.Tab.0.center" timestamp="1602599803378">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="234" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602177165052" />
-    <state width="1537" height="234" key="GridCell.Tab.0.left" timestamp="1602177165052">
+    <state width="1537" height="234" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602599803378" />
+    <state width="1537" height="234" key="GridCell.Tab.0.left" timestamp="1602599803378">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="234" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602177165052" />
-    <state width="1537" height="234" key="GridCell.Tab.0.right" timestamp="1602177165052">
+    <state width="1537" height="234" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602599803378" />
+    <state width="1537" height="234" key="GridCell.Tab.0.right" timestamp="1602599803379">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="234" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602177165052" />
-    <state width="1537" height="332" key="GridCell.Tab.1.bottom" timestamp="1602089609132">
+    <state width="1537" height="234" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602599803379" />
+    <state width="1537" height="332" key="GridCell.Tab.1.bottom" timestamp="1602590542558">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602089609132" />
-    <state width="1537" height="332" key="GridCell.Tab.1.center" timestamp="1602089609132">
+    <state width="1537" height="332" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602590542558" />
+    <state width="1537" height="332" key="GridCell.Tab.1.center" timestamp="1602590542556">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602089609132" />
-    <state width="1537" height="332" key="GridCell.Tab.1.left" timestamp="1602089609132">
+    <state width="1537" height="332" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602590542556" />
+    <state width="1537" height="332" key="GridCell.Tab.1.left" timestamp="1602590542542">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602089609132" />
-    <state width="1537" height="332" key="GridCell.Tab.1.right" timestamp="1602089609132">
+    <state width="1537" height="332" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602590542542" />
+    <state width="1537" height="332" key="GridCell.Tab.1.right" timestamp="1602590542556">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602089609132" />
+    <state width="1537" height="332" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602590542556" />
     <state x="277" y="59" key="SettingsEditor" timestamp="1600275884056">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="277" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600275884056" />
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1601564673930">
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1602590578525">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1601564673930" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1602590578525" />
     <state x="408" y="32" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601904379175">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -152,10 +158,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="345" y="153" width="846" height="604" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" timestamp="1600276697024" />
-    <state x="209" y="37" key="new project wizard" timestamp="1601471402710">
+    <state x="209" y="37" key="new project wizard" timestamp="1602399673740">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="209" y="37" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1601471402710" />
+    <state x="209" y="37" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1602399673740" />
     <state x="475" y="45" key="refactoring.ChangeSignatureDialog" timestamp="1599939843288">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -171,6 +177,16 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java</url>
+          <line>25</line>
+          <properties class="ru.vsu.cs.course1.Discipline" method="setStudClass">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" log-message="true" type="java-exception" />
       </default-breakpoints>

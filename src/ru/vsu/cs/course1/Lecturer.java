@@ -43,7 +43,7 @@ public class Lecturer {
         return name;
     }
 
-    public boolean ifExistDisc(Discipline currDisc){
+    public boolean isTeachDisc(Discipline currDisc){
         String currDiscName = currDisc.getCourseType();
         for (CourseType courseType : disciplines){
             if (currDiscName.equals(courseType.name())){

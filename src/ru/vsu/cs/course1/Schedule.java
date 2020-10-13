@@ -9,7 +9,7 @@ public class Schedule {
 
     Schedule() {
         this.lecturers = randomLecturers();
-        this.groups = createGroups(randomStudents(10));
+        this.groups = createGroups(randomStudents(40));
         this.disciplines = createDisciplines(CourseType.values());
     }
 
@@ -34,22 +34,59 @@ public class Schedule {
 
     }
 
+    private boolean needAddPair(Group group, List<Discipline> disciplines) {
+        int countPairs = 0;
+        for (Discipline discipline : disciplines) {
+            if (discipline.getHours(group.getName()) != -1){
+
+                countPairs = countPairs + discipline.getHours(group.getName());
+            }
+//            if (discipline.getHours(group.getName())<24) {
+//                System.out.println(discipline.getHours(group.getName()));
+//                if (discipline.getHours(group.getName()) == -1){
+//                    System.out.println(discipline.getCourseType() + "  " + group.getName() );
+//                    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+//                }
+//                return true;
+//            }
+        }
+        if (countPairs<24){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     private List<Discipline> createDisciplines(CourseType[] values) {
         List<Discipline> disciplines = new ArrayList<>();
         for (CourseType courseType : values) {
             disciplines.add(new Discipline(courseType));
         }
-        for (int i = 0; i < disciplines.size(); i++) {
+        for (Discipline discipline : disciplines) {
             List<Integer> classes = new ArrayList<>();
             for (int j = 0; j < random(1, 3); j++) {
                 classes.add(random(10, 50));
             }
-            disciplines.get(i).setClasses(classes);
+            discipline.setClasses(classes);
             for (Group group : groups) {
-                disciplines.get(i).setHours(group.getName(), random(0, 3));
+                if (needAddPair(group, disciplines)) {
+                    discipline.setHours(group.getName(), random(0, 3));
+                } else {
+                    discipline.setHours(group.getName(), 0);
+                }
             }
         }
+//        for (int i = 0; i < disciplines.size(); i++) {
+//            List<Integer> classes = new ArrayList<>();
+//            for (int j = 0; j < random(1, 3); j++) {
+//                classes.add(random(10, 50));
+//            }
+//            disciplines.get(i).setClasses(classes);
+//            for (Group group : groups) {
+//                if (checkCountPairs())
+//                disciplines.get(i).setHours(group.getName(), random(0, 3));
+//            }
+//        }
         return disciplines;
     }
 
@@ -202,7 +239,7 @@ public class Schedule {
         }
         for (int i = 0; i < studentsByCourses.length; i++) {
             if (studentsByCourses[i] != null) {
-                List<Student>[] studentsByGroups = byGroup(studentsByCourses[i], 6);
+                List<Student>[] studentsByGroups = byGroup(studentsByCourses[i], 5);
                 for (int j = 0; j < studentsByGroups.length; j++) {
                     Group group = new Group(String.valueOf(i + 1).concat(".").concat(String.valueOf(j + 1)));
                     group.addStudents(studentsByGroups[j]);
