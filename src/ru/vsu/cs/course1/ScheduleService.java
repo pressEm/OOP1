@@ -1,9 +1,7 @@
 package ru.vsu.cs.course1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ScheduleService {
     private List<Group> groups;
@@ -26,22 +24,14 @@ public class ScheduleService {
             }
         }
         List<StudyWeek> schedule = new ArrayList<>();
-//        StudyWeek[] scheduleArr = new StudyWeek[groups.size()];
-        Map<Integer, List<Integer>> classesBusy = new HashMap<>(); // class -- hours
-
-        int i = 0;
         for (Group group : groups) {
-            StudyWeek studyWeek = createStudyWeekFor1Group(group, classesBusy, schedule);
+            StudyWeek studyWeek = createStudyWeekFor1Group(group, schedule);
             schedule.add(studyWeek);
             for (Student student : group.getStudents()) {
                 student.setStudyWeek(studyWeek);
             }
-//            scheduleArr[i] = studyWeek;
         }
-        i = 0;
         printSchedule(schedule);
-//        printDiscFor1Gr(discFor1group(disciplines, groups.get(0)));
-
     }
 
     private int findClass(Discipline discipline, int day, int hour, List<StudyWeek> schedule) {
@@ -65,15 +55,6 @@ public class ScheduleService {
             }
             return true;
         }
-//        for (Discipline discipline : disciplines){
-//            for (List<Integer> classHours : discipline.getClassHours().values()){
-//                for (Integer hour: classHours){
-//                    if (hour == studClass){
-//                        return false;
-//                    }
-//                }
-//            }
-//        }
         return true;
     }
 
@@ -85,19 +66,11 @@ public class ScheduleService {
         }
         return true;
     }
-//
-//    private boolean classIsEmpty(List<Integer> hours, int hourCurr){
-//        for (Integer hour: hours){
-//            if (hour == hourCurr){
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
 
-    private StudyWeek createStudyWeekFor1Group(Group group, Map<Integer, List<Integer>> lectBusy, List<StudyWeek> schedule) {
+    private StudyWeek createStudyWeekFor1Group(Group group, List<StudyWeek> schedule) {
         List<Discipline> thisDisc = discFor1group(disciplines, group);
+        thisDisc.add(null);
         StudyWeek studyWeek = new StudyWeek(group);
 //         6 дней в нед
         for (int i = 0; i < 6; i++) {
@@ -106,25 +79,27 @@ public class ScheduleService {
 //                 6 пар в день
             for (int j = 0; ((j < 6) && (thisDisc.size() > 0)); j++) {
                 isFind = false;
-                for (Lecturer lecturer : lecturers) {
-                    while ((!isFind) && (lecturer.isTeachDisc(thisDisc.get(0))) &&
-                            (isLectFree(lecturer, (i * 10 + j))) && (thisDisc.size() > 0)) {
-                        int studClass = findClass(thisDisc.get(0), i, j, schedule);
-                        if (studClass != -1) {
-                            studyDay.addPair(new Pair(group, lecturer, thisDisc.get(0), studClass, i, j));
-                            thisDisc.remove(0);
-                            isFind = true;
+                if (thisDisc.get(0) != null) {
+                    for (Lecturer lecturer : lecturers) {
+                        while ((!isFind) && (lecturer.isTeachDisc(thisDisc.get(0))) &&
+                                (isLectFree(lecturer, (i * 10 + j))) && (thisDisc.size() > 0)) {
+                            int studClass = findClass(thisDisc.get(0), i, j, schedule);
+                            if (studClass != -1) {
+                                studyDay.addPair(new Pair(group, lecturer, thisDisc.get(0), studClass, i, j));
+                                thisDisc.remove(0);
+                                isFind = true;
+                            }
+                        }
+                        if (isFind) {
+                            break;
                         }
                     }
-                    if (isFind) {
-                        break;
+                    if (!isFind) {
+                        thisDisc.add(thisDisc.remove(0));
+                        j--;
                     }
-                }
-                if (!isFind) {
-                    thisDisc.add(thisDisc.get(0));
-                    thisDisc.remove(0);
-                    j--;
-                }
+                } else thisDisc.add(thisDisc.remove(0));
+
             }
             studyWeek.addDay(studyDay);
         }
@@ -150,17 +125,6 @@ public class ScheduleService {
         System.out.println();
     }
 
-    public void printDiscFor1Gr(List<Discipline> listDisc1Gr) {
-        System.out.println("Disciplines for group on week  " + listDisc1Gr.size());
-        for (int i = 0; i < listDisc1Gr.size(); i++) {
-            System.out.println(i + "                      " + listDisc1Gr.get(i).getCourseType() + " в кабинете: " + listDisc1Gr.get(i).getClasses());
-            for (List<Integer> hour : listDisc1Gr.get(i).getClassHours().values()) {
-
-            }
-        }
-        System.out.println("___________________________________________________");
-    }
-
     public void printWeekFor1Gr(StudyWeek studyWeek, int i) {
         System.out.println("Pairs for " + i + " group in week");
         for (DayWeek dayWeek : DayWeek.values()) {
@@ -173,6 +137,17 @@ public class ScheduleService {
                 System.out.println();
             }
             System.out.println();
+        }
+        System.out.println("___________________________________________________");
+    }
+
+    public void printDiscFor1Gr(List<Discipline> listDisc1Gr) {
+        System.out.println("Disciplines for group on week  " + listDisc1Gr.size());
+        for (int i = 0; i < listDisc1Gr.size(); i++) {
+            System.out.println(i + "                      " + listDisc1Gr.get(i).getCourseType() + " в кабинете: " + listDisc1Gr.get(i).getClasses());
+            for (List<Integer> hour : listDisc1Gr.get(i).getClassHours().values()) {
+
+            }
         }
         System.out.println("___________________________________________________");
     }
