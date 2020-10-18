@@ -1,4 +1,6 @@
-package ru.vsu.cs.course1;
+package ru.vsu.cs.course1.Data;
+
+import ru.vsu.cs.course1.StudyWeek;
 
 public class Student {
     private String name;

@@ -1,112 +1,132 @@
 package ru.vsu.cs.course1;
 
+//import ru.vsu.cs.course1.Enums.DayWeek;
+//import ru.vsu.cs.course1.Objects.*;
+
+import ru.vsu.cs.course1.Data.Discipline;
+import ru.vsu.cs.course1.Data.Group;
+import ru.vsu.cs.course1.Data.Lecturer;
+import ru.vsu.cs.course1.Data.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScheduleService {
-    private List<Group> groups;
-    private List<Discipline> disciplines;
-    private List<Lecturer> lecturers;
-
-    public ScheduleService(Schedule schedule) {
-        this.groups = schedule.getGroups();
-        this.disciplines = schedule.getDisciplines();
-        this.lecturers = schedule.getLecturers();
-    }
-
-    public void createSchedule() {
-        List<Discipline> allDisc = new ArrayList<>();
-        for (Discipline discipline : disciplines) {
-            for (Integer k : discipline.getGroupHoursMap().values()) {
-                for (int i = 0; i < k; i++) {
-                    allDisc.add(discipline);
-                }
+    public static void printSchedule(Schedule schedule) {
+        List<StudyWeek> list = getListOfWeeks(schedule);
+        List<List<String>> strings = new ArrayList<>();
+        for (StudyWeek studyWeek : list) {
+            List<String> groupSchedule = getWeekFor1Gr(studyWeek);
+            List<String> spaces = setLength(groupSchedule, findMaxLength(groupSchedule) + 3);
+            strings.add(concatLists(groupSchedule, spaces));
+        }
+        List<String> string = strings.remove(0);
+        for (List<String> l : strings) {
+            for (int i = 0; i < l.size(); i++) {
+                string.add(i, string.remove(i).concat(l.get(i)));
             }
         }
-        List<StudyWeek> schedule = new ArrayList<>();
-        for (Group group : groups) {
-            StudyWeek studyWeek = createStudyWeekFor1Group(group, schedule);
-            schedule.add(studyWeek);
+        for (String s : string) {
+            System.out.println(s);
+        }
+    }
+
+    private static List<String> concatLists(List<String> l1, List<String> l2) {
+        List<String> l3 = new ArrayList<>();
+        for (int i = 0; i < l1.size(); i++) {
+            l3.add(l1.get(i) + l2.get(i) + "||");
+        }
+        return l3;
+    }
+
+    private static int findMaxLength(List<String> strings) {
+        int max = 0;
+        for (String s : strings) {
+            max = Math.max(s.length(), max);
+        }
+        return max;
+    }
+
+    private static List<String> setLength(List<String> strings, int max) {
+        List<String> spaces = new ArrayList<>();
+        for (String s : strings) {
+            spaces.add(" ".repeat(Math.max(0, max - s.length())));
+        }
+        return spaces;
+    }
+
+//    public static void printSchedule(Schedule schedule) {
+//        List<StudyWeek> list = getListOfWeeks(schedule);
+//        for (StudyWeek studyWeek : list) {
+//            System.out.println(printWeekFor1Gr(studyWeek));
+//        }
+//        System.out.println();
+//    }
+
+    private static List<StudyWeek> getListOfWeeks(Schedule schedule) {
+        List<StudyWeek> listOfWeeks = new ArrayList<>();
+        for (Group group : schedule.getGroups()) {
+            StudyWeek studyWeek = createStudyWeekFor1Group(schedule, group);
+            listOfWeeks.add(studyWeek);
             for (Student student : group.getStudents()) {
                 student.setStudyWeek(studyWeek);
             }
         }
-        printSchedule(schedule);
+        return listOfWeeks;
     }
 
-    private int findClass(Discipline discipline, int day, int hour, List<StudyWeek> schedule) {
-        int numPair = 10 * day + hour;
-        for (Integer studClass : discipline.getClasses()) {
-            if (isClassFree(studClass, day, hour, schedule)) {
-                return studClass;
-            }
-        }
-        return -1;
-    }
-
-    private boolean isClassFree(int studClass, int day, int hour, List<StudyWeek> schedule) {
-        for (StudyWeek week : schedule) {
-            for (StudyDay dayWeek : week.getDays()) {
-                for (Pair pair : dayWeek.getPairsList()) {
-                    if ((pair.getStudClass() == studClass) && (pair.getDayNum() == day) && (pair.getPairNum() == hour)) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        return true;
-    }
-
-    private boolean isLectFree(Lecturer lecturer, int hour) {
-        for (Integer studyHour : lecturer.getStudyHours()) {
-            if (studyHour == hour) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    private StudyWeek createStudyWeekFor1Group(Group group, List<StudyWeek> schedule) {
-        List<Discipline> thisDisc = discFor1group(disciplines, group);
-        thisDisc.add(null);
+    private static StudyWeek createStudyWeekFor1Group(Schedule schedule, Group group) {
         StudyWeek studyWeek = new StudyWeek(group);
-//         6 дней в нед
+        List<Discipline> thisDisc = discFor1group(schedule.getDisciplines(), group); // дисциплины в нед для 1 группы
+        thisDisc.add(null);
         for (int i = 0; i < 6; i++) {
-            StudyDay studyDay = new StudyDay(group, DayWeek.values()[i]);
-            boolean isFind;
-//                 6 пар в день
-            for (int j = 0; ((j < 6) && (thisDisc.size() > 0)); j++) {
-                isFind = false;
+            StudyDay studyDay = new StudyDay(group, i);
+            for (int j = 0; j < 6; j++) {//цикл по парам
                 if (thisDisc.get(0) != null) {
-                    for (Lecturer lecturer : lecturers) {
-                        while ((!isFind) && (lecturer.isTeachDisc(thisDisc.get(0))) &&
-                                (isLectFree(lecturer, (i * 10 + j))) && (thisDisc.size() > 0)) {
-                            int studClass = findClass(thisDisc.get(0), i, j, schedule);
-                            if (studClass != -1) {
-                                studyDay.addPair(new Pair(group, lecturer, thisDisc.get(0), studClass, i, j));
-                                thisDisc.remove(0);
-                                isFind = true;
-                            }
+                    Lecturer lecturer = findLecturer(schedule, thisDisc.get(0), i, j);
+                    if (lecturer != null) { //нашли лектора
+                        Integer studClass = findClass(schedule, thisDisc.get(0), i, j); //ищем кабинет
+                        if (studClass != null) { //нашли кабинет
+                            Pair pair = new Pair(group, lecturer, thisDisc.remove(0), studClass, i, j);
+                            studyDay.addPair(pair);
+                            lecturer.addStudyHour(i, j);
+                            schedule.getStudyClasses().get(studClass).addStudyHour(i, j);
+                        } else {
+                            thisDisc.add(thisDisc.remove(0));
+                            j--;
                         }
-                        if (isFind) {
-                            break;
-                        }
-                    }
-                    if (!isFind) {
+                    } else {
                         thisDisc.add(thisDisc.remove(0));
                         j--;
                     }
-                } else thisDisc.add(thisDisc.remove(0));
-
+                } else {
+                    thisDisc.add(thisDisc.remove(0));
+                }
             }
             studyWeek.addDay(studyDay);
         }
         return studyWeek;
     }
 
-    public List<Discipline> discFor1group(List<Discipline> allDisc, Group group) {
+    private static Lecturer findLecturer(Schedule schedule, Discipline discipline, int day, int pair) {
+        for (Lecturer lecturer : schedule.getLecturers()) {
+            if ((lecturer.isTeachDisc(discipline)) && (lecturer.isFree(day, pair))) {
+                return lecturer;
+            }
+        }
+        return null;
+    }
+
+    private static Integer findClass(Schedule schedule, Discipline discipline, int day, int pair) {
+        for (Integer studyClassForDisc : discipline.getClasses()) {
+            if (schedule.getStudyClasses().get(studyClassForDisc).ifStudyClassEmpty(day, pair)) {
+                return studyClassForDisc;
+            }
+        }
+        return null;
+    }
+
+    private static List<Discipline> discFor1group(List<Discipline> allDisc, Group group) {
         List<Discipline> discInWeekFor1Group = new ArrayList<>();
         for (Discipline discipline : allDisc) {
             for (int i = 0; i < discipline.getHoursForGroup(group); i++) {
@@ -116,40 +136,24 @@ public class ScheduleService {
         return discInWeekFor1Group;
     }
 
-    private void printSchedule(List<StudyWeek> schedule) {
-        int i = 0;
-        for (StudyWeek studyWeek : schedule) {
-            i++;
-            printWeekFor1Gr(studyWeek, i);
-        }
-        System.out.println();
-    }
-
-    public void printWeekFor1Gr(StudyWeek studyWeek, int i) {
-        System.out.println("Pairs for " + i + " group in week");
+    private static List<String> getWeekFor1Gr(StudyWeek studyWeek) {
+        List<String> strings = new ArrayList<>();
+        strings.add("Pairs for group " + studyWeek.getGroup().getName());
         for (DayWeek dayWeek : DayWeek.values()) {
-            System.out.println(studyWeek.getDay(dayWeek).getDayWeek());
-            for (Pair pair : studyWeek.getDay(dayWeek).getPairsList()) {
-                System.out.print(pair.getLecturer().getName() + ", ");
-                System.out.print(pair.getPairNum() + ", ");
-                System.out.print(pair.getDiscipline().getCourseType() + ", ");
-                System.out.print(pair.getStudClass() + ", ");
-                System.out.println();
-            }
-            System.out.println();
-        }
-        System.out.println("___________________________________________________");
-    }
-
-    public void printDiscFor1Gr(List<Discipline> listDisc1Gr) {
-        System.out.println("Disciplines for group on week  " + listDisc1Gr.size());
-        for (int i = 0; i < listDisc1Gr.size(); i++) {
-            System.out.println(i + "                      " + listDisc1Gr.get(i).getCourseType() + " в кабинете: " + listDisc1Gr.get(i).getClasses());
-            for (List<Integer> hour : listDisc1Gr.get(i).getClassHours().values()) {
-
+            strings.add("__________________________");
+            strings.add("  " + studyWeek.getDay(dayWeek).getDayWeek());
+            List<Pair> pairs = studyWeek.getDay(dayWeek).getPairsList();
+            int counter = 0;
+            for (int i = 0; i < 6; i++) {
+                if (pairs.size() > i - counter && pairs.get(i - counter).getPairNum() == i) {
+                    strings.add((i + 1) + ") " + pairs.get(i - counter).getDiscipline().getCourseType() + ", "
+                            + pairs.get(i - counter).getStudClass() + ", " + pairs.get(i - counter).getLecturer().getName());
+                } else {
+                    strings.add((i + 1) + ") ");
+                    counter++;
+                }
             }
         }
-        System.out.println("___________________________________________________");
+        return strings;
     }
-
 }

@@ -1,6 +1,8 @@
 package ru.vsu.cs.course1;
 
-import java.util.List;
+import ru.vsu.cs.course1.Data.Discipline;
+import ru.vsu.cs.course1.Data.Group;
+import ru.vsu.cs.course1.Data.Lecturer;
 
 public class Pair {
     private Group group;
@@ -15,10 +17,9 @@ public class Pair {
         this.pairNum = pairNum;
         this.group = group;
         this.lecturer = lecturer;
-        this.lecturer.addStudyHour(dayNum*10 + pairNum);
+        this.lecturer.addStudyHour(dayNum, pairNum);
         this.discipline = discipline;
         this.studClass = studClass;
-//        this.discipline.addStudyHour(dayNum*10 + pairNum);
     }
 
     public int getStudClass() {
@@ -28,10 +29,6 @@ public class Pair {
     public int getDayNum() {
         return dayNum;
     }
-
-//    public List<Integer> getClass(){
-//        return discipline.getClass();
-//    }
 
     public int getPairNum() {
         return pairNum;

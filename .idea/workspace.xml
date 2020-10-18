@@ -2,9 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c570306-bacd-43fb-925e-11ad7eaa28a8" name="Default Changelist" comment="readFiles">
+      <change afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Data/StudyClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Discipline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Lecturer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Pair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Schedule.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Schedule.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/ScheduleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyDay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyDay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyWeek.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP1.1/ru/vsu/cs/course1/StudyWeek.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Data/Discipline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Data/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Data/Lecturer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Schedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/Data/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyDay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyWeek.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/vsu/cs/course1/StudyWeek.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +53,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/OOP1-master/OOP1-master" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.capture" />
   </component>
   <component name="RunManager">
@@ -98,50 +119,50 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="424" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1600870050690" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1600237638448">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602945837788">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600237638448" />
-    <state width="1537" height="237" key="GridCell.Tab.0.bottom" timestamp="1602651801900">
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602945837788" />
+    <state width="1537" height="2" key="GridCell.Tab.0.bottom" timestamp="1602998350142">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="237" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602651801900" />
-    <state width="1537" height="237" key="GridCell.Tab.0.center" timestamp="1602651801900">
+    <state width="1537" height="2" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602998350142" />
+    <state width="1537" height="2" key="GridCell.Tab.0.center" timestamp="1602998350142">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="237" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602651801900" />
-    <state width="1537" height="237" key="GridCell.Tab.0.left" timestamp="1602651801900">
+    <state width="1537" height="2" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602998350142" />
+    <state width="1537" height="2" key="GridCell.Tab.0.left" timestamp="1602998350142">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="237" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602651801900" />
-    <state width="1537" height="237" key="GridCell.Tab.0.right" timestamp="1602651801900">
+    <state width="1537" height="2" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602998350142" />
+    <state width="1537" height="2" key="GridCell.Tab.0.right" timestamp="1602998350142">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="237" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602651801900" />
-    <state width="1537" height="332" key="GridCell.Tab.1.bottom" timestamp="1602590542558">
+    <state width="1537" height="2" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602998350142" />
+    <state width="1537" height="398" key="GridCell.Tab.1.bottom" timestamp="1602695728839">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602590542558" />
-    <state width="1537" height="332" key="GridCell.Tab.1.center" timestamp="1602590542556">
+    <state width="1537" height="398" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602695728839" />
+    <state width="1537" height="398" key="GridCell.Tab.1.center" timestamp="1602695728838">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602590542556" />
-    <state width="1537" height="332" key="GridCell.Tab.1.left" timestamp="1602590542542">
+    <state width="1537" height="398" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602695728838" />
+    <state width="1537" height="398" key="GridCell.Tab.1.left" timestamp="1602695728838">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602590542542" />
-    <state width="1537" height="332" key="GridCell.Tab.1.right" timestamp="1602590542556">
+    <state width="1537" height="398" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602695728838" />
+    <state width="1537" height="398" key="GridCell.Tab.1.right" timestamp="1602695728838">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1537" height="332" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602590542556" />
+    <state width="1537" height="398" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602695728838" />
     <state x="277" y="59" key="SettingsEditor" timestamp="1600275884056">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="277" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600275884056" />
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1602590578525">
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1602743282146">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1602590578525" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1602743282146" />
     <state x="408" y="32" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601904379175">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -171,12 +192,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/ru/vsu/cs/course1/Discipline.java</url>
-          <line>25</line>
-          <properties class="ru.vsu.cs.course1.Discipline" method="setStudClass">
+          <url>file://$PROJECT_DIR$/src/ru/vsu/cs/course1/Data/Discipline.java</url>
+          <line>29</line>
+          <properties class="ru.vsu.cs.course1.Discipline">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/vsu/cs/course1/ScheduleService.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
