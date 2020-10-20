@@ -8,16 +8,20 @@ public class Schedule {
     private List<Group> groups;
     private List<Lecturer> lecturers;
     private List<Discipline> disciplines;
-    private Map<Integer, StudyClass> studyClasses = new HashMap<>();
-
+    private Map<Integer, StudyClass> studyClasses;
+    private List<Student> allStudents;
 
     Schedule() {
         this.lecturers = randomLecturers();
-        this.groups = createGroups(randomStudents(400));
+        this.allStudents = randomStudents(40);
+        this.groups = createGroups(allStudents);
         this.disciplines = createDisciplines(CourseType.values());
         this.studyClasses = createStudyClasses();
     }
 
+    public List<Student> getAllStudents() {
+        return allStudents;
+    }
 
     public List<Group> getGroups() {
         return groups;
@@ -39,9 +43,18 @@ public class Schedule {
         printGroups(groups);
         printDisciplines(disciplines);
         printLecturers(lecturers);
-//        printStudyClasses(studyClasses);
     }
 
+    private boolean needAddPair(Group group, List<Discipline> disciplines) {
+        int countPairs = 0;
+        for (Discipline discipline : disciplines) {
+            if (discipline.getHours(group.getName()) != -1) {
+
+                countPairs = countPairs + discipline.getHours(group.getName());
+            }
+        }
+        return countPairs < 24;
+    }
 
     private List<Discipline> createDisciplines(CourseType[] values) {
         List<Discipline> disciplines = new ArrayList<>();
@@ -65,21 +78,44 @@ public class Schedule {
         return disciplines;
     }
 
-    private boolean needAddPair(Group group, List<Discipline> disciplines) {
-        int countPairs = 0;
+    private Map<Integer, StudyClass> createStudyClasses() {
+        Map<Integer, StudyClass> studyClassMap = new HashMap<>();
         for (Discipline discipline : disciplines) {
-            if (discipline.getHours(group.getName()) != -1){
-
-                countPairs = countPairs + discipline.getHours(group.getName());
+            for (Integer studyClass : discipline.getClasses()) {
+                if (!studyClassMap.containsKey(studyClassMap)) {
+                    studyClassMap.put(studyClass, new StudyClass(studyClass));
+                }
             }
         }
-        if (countPairs<24){
-            return true;
-        }else{
-            return false;
-        }
+        return studyClassMap;
     }
 
+    public void printGroups(List<Group> groups) {
+        for (Group group : groups) {
+            System.out.println(group.getName() + " GROUP ");
+            for (Student student : group.getStudents()) {
+                System.out.println("    " + student.getName());
+            }
+        }
+        System.out.println("____________________________________________________");
+    }
+
+    public void printDisciplines(List<Discipline> disciplines) {
+        for (Discipline discipline : disciplines) {
+            System.out.println(discipline.getCourseType());
+            System.out.println(discipline.getGroupHoursMap() + " -- group=hours");
+            System.out.println(discipline.getClasses() + " -- classes");
+        }
+        System.out.println("____________________________________________________");
+    }
+
+    public void printLecturers(List<Lecturer> lecturers) {
+        System.out.println(lecturers.size());
+        for (Lecturer lecturer : lecturers) {
+            System.out.println(lecturer.getName() + " -- " + lecturer.getDisciplines());
+        }
+        System.out.println("____________________________________________________");
+    }
 
     private List<Student> randomStudents(int countStudents) {
         List<Student> studentList = new ArrayList<>();
@@ -88,20 +124,29 @@ public class Schedule {
         }
         return studentList;
     }
-    
 
-    private Map<Integer,StudyClass> createStudyClasses(){
-        Map<Integer,StudyClass> studyClassMap = new HashMap<>();
-        for (Discipline discipline:disciplines){
-            for (Integer studyClass : discipline.getClasses()){
-                if (!studyClassMap.containsKey(studyClassMap)){
-                    studyClassMap.put(studyClass, new StudyClass(studyClass));
-                }
+    private int findMinK(int[] arr) {
+        int min = 10;
+        int k = 0;
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] < min) {
+                min = arr[i];
+                k = i;
             }
         }
-        return studyClassMap;
+        return k;
     }
 
+    private boolean ifExist0(int[] arr) {
+        boolean exist = false;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0) {
+                exist = true;
+            }
+        }
+        return exist;
+    }
 
     private List<Lecturer> randomLecturers() {
         List<Lecturer> lecturers = new ArrayList<>();
@@ -150,29 +195,6 @@ public class Schedule {
         return lecturers;
     }
 
-    private int findMinK(int[] arr) {
-        int min = 10;
-        int k = 0;
-        for (int i = 0; i < arr.length; i++) {
-
-            if (arr[i] < min) {
-                min = arr[i];
-                k = i;
-            }
-        }
-        return k;
-    }
-
-    private boolean ifExist0(int[] arr) {
-        boolean exist = false;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 0) {
-                exist = true;
-            }
-        }
-        return exist;
-    }
-
     private int random(int min, int max) {
         max -= min;
         return (int) (Math.random() * ++max) + min;
@@ -211,7 +233,7 @@ public class Schedule {
         }
         for (int i = 0; i < studentsByCourses.length; i++) {
             if (studentsByCourses[i] != null) {
-                List<Student>[] studentsByGroups = byGroup(studentsByCourses[i], 30);
+                List<Student>[] studentsByGroups = byGroup(studentsByCourses[i], 5);
                 for (int j = 0; j < studentsByGroups.length; j++) {
                     Group group = new Group(String.valueOf(i + 1).concat(".").concat(String.valueOf(j + 1)));
                     group.addStudents(studentsByGroups[j]);
@@ -236,46 +258,5 @@ public class Schedule {
             groups[i % numberOfGroups].add(studentsOnCourse.get(i));
         }
         return groups;
-    }
-
-
-    public void printStudyClasses(Map<Integer,StudyClass> studyClasses){
-        System.out.println("StudyClasses:");
-        for (StudyClass studyClass: studyClasses.values()){
-            System.out.println(studyClass.getNameClass() + " ");
-        }
-    }
-
-    public void printGroups(List<Group> groups) {
-        for (Group group : groups) {
-            System.out.println(group.getName() + " GROUP ");
-            for (Student student : group.getStudents()) {
-                System.out.println("    " + student.getName());
-            }
-        }
-        System.out.println("____________________________________________________");
-    }
-
-    public void printStudents(List<Student> students) {
-        for (int i = 0; i < students.size(); i++) {
-            System.out.println(students.get(i).getName() + " " + students.get(i).getCourse());
-        }
-    }
-
-    public void printDisciplines(List<Discipline> disciplines) {
-        for (Discipline discipline : disciplines) {
-            System.out.println(discipline.getCourseType());
-            System.out.println(discipline.getGroupHoursMap() + " -- group=hours");
-            System.out.println(discipline.getClasses() + " -- classes");
-        }
-        System.out.println("____________________________________________________");
-    }
-
-    public void printLecturers(List<Lecturer> lecturers) {
-        System.out.println(lecturers.size());
-        for (Lecturer lecturer : lecturers) {
-            System.out.println(lecturer.getName() + " -- " + lecturer.getDisciplines());
-        }
-        System.out.println("____________________________________________________");
     }
 }
