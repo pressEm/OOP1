@@ -1,6 +1,6 @@
 package ru.vsu.cs.course1.Data;
 
-import ru.vsu.cs.course1.CourseType;
+import ru.vsu.cs.course1.Enum.CourseType;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,10 +21,6 @@ public class Lecturer {
 
     public void addStudyHour(int day, int pair){
         this.busyHours.add(10*day+pair);
-    }
-
-    public List<Integer> getBusyHours() {
-        return busyHours;
     }
 
     public Set<CourseType> getDisciplines(){

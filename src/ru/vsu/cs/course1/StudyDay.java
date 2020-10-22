@@ -1,6 +1,7 @@
 package ru.vsu.cs.course1;
 
 import ru.vsu.cs.course1.Data.Group;
+import ru.vsu.cs.course1.Enum.DayWeek;
 
 import java.util.*;
 

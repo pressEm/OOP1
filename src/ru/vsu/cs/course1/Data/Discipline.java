@@ -1,6 +1,6 @@
 package ru.vsu.cs.course1.Data;
 
-import ru.vsu.cs.course1.CourseType;
+import ru.vsu.cs.course1.Enum.CourseType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +27,6 @@ public class Discipline {
     public List<Integer> getClasses() {
         return classes;
     }
-
 
     public int getHoursForGroup(Group group) {
         return groupHoursMap.get(group.getName());

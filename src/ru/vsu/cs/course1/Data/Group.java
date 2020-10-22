@@ -11,10 +11,6 @@ public class Group {
         this.name = name;
     }
 
-    public void addStudent(Student student) {
-        students.add(student);
-    }
-
     public String getName(){
         return this.name;
     }

@@ -1,6 +1,7 @@
 package ru.vsu.cs.course1;
 
 import ru.vsu.cs.course1.Data.*;
+import ru.vsu.cs.course1.Enum.CourseType;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ public class Schedule {
     private List<Discipline> disciplines;
     private Map<Integer, StudyClass> studyClasses;
     private List<Student> allStudents;
+    private List<StudyWeek> listOfWeeks;
 
     Schedule() {
         this.lecturers = randomLecturers();
@@ -17,6 +19,14 @@ public class Schedule {
         this.groups = createGroups(allStudents);
         this.disciplines = createDisciplines(CourseType.values());
         this.studyClasses = createStudyClasses();
+    }
+
+    public List<StudyWeek> getListOfWeeks() {
+        return listOfWeeks;
+    }
+
+    public void setListOfWeeks(List<StudyWeek> listOfWeeks) {
+        this.listOfWeeks = listOfWeeks;
     }
 
     public List<Student> getAllStudents() {
@@ -88,33 +98,6 @@ public class Schedule {
             }
         }
         return studyClassMap;
-    }
-
-    public void printGroups(List<Group> groups) {
-        for (Group group : groups) {
-            System.out.println(group.getName() + " GROUP ");
-            for (Student student : group.getStudents()) {
-                System.out.println("    " + student.getName());
-            }
-        }
-        System.out.println("____________________________________________________");
-    }
-
-    public void printDisciplines(List<Discipline> disciplines) {
-        for (Discipline discipline : disciplines) {
-            System.out.println(discipline.getCourseType());
-            System.out.println(discipline.getGroupHoursMap() + " -- group=hours");
-            System.out.println(discipline.getClasses() + " -- classes");
-        }
-        System.out.println("____________________________________________________");
-    }
-
-    public void printLecturers(List<Lecturer> lecturers) {
-        System.out.println(lecturers.size());
-        for (Lecturer lecturer : lecturers) {
-            System.out.println(lecturer.getName() + " -- " + lecturer.getDisciplines());
-        }
-        System.out.println("____________________________________________________");
     }
 
     private List<Student> randomStudents(int countStudents) {
@@ -258,5 +241,32 @@ public class Schedule {
             groups[i % numberOfGroups].add(studentsOnCourse.get(i));
         }
         return groups;
+    }
+
+    public void printGroups(List<Group> groups) {
+        for (Group group : groups) {
+            System.out.println(group.getName() + " GROUP ");
+            for (Student student : group.getStudents()) {
+                System.out.println("    " + student.getName());
+            }
+        }
+        System.out.println("____________________________________________________");
+    }
+
+    public void printDisciplines(List<Discipline> disciplines) {
+        for (Discipline discipline : disciplines) {
+            System.out.println(discipline.getCourseType());
+            System.out.println(discipline.getGroupHoursMap() + " -- group=hours");
+            System.out.println(discipline.getClasses() + " -- classes");
+        }
+        System.out.println("____________________________________________________");
+    }
+
+    public void printLecturers(List<Lecturer> lecturers) {
+        System.out.println(lecturers.size());
+        for (Lecturer lecturer : lecturers) {
+            System.out.println(lecturer.getName() + " -- " + lecturer.getDisciplines());
+        }
+        System.out.println("____________________________________________________");
     }
 }

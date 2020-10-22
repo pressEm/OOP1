@@ -1,0 +1,22 @@
+package ru.vsu.cs.course1.Enum;
+
+public enum CourseType {
+    ALGEBRA,
+    GEOMETRY,
+    PROBABILITY_THEORY,
+    DISCRETE_MATH,
+    COMPUTER_GRAPHICS,
+    OOP,
+    WEB_TECHNOLOGY,
+    COMPUTER_ARCHITECTURE,
+    PHYSICS,
+    OPTICS,
+    ELECTRODYNAMICS,
+    NUCLEAR_PHYSICS,
+    SOCIAL_STUDIES,
+    PHILOSOPHY,
+    CULTUROLOGY,
+    HISTORY,
+    ECONOMY,
+    ENGLISH;
+}
